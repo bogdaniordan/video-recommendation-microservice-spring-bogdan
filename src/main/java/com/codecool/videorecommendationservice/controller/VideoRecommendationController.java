@@ -4,6 +4,8 @@ import com.codecool.videorecommendationservice.entity.VideoRecommendation;
 import com.codecool.videorecommendationservice.service.VideoRecommendationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +29,20 @@ public class VideoRecommendationController {
         return videoRecommendationService.getVideoRecommendationById(id);
     }
 
-    @PutMapping("")
-    public VideoRecommendation updateVideoRecommendation(@RequestBody VideoRecommendation videoRecommendation) {
-        return videoRecommendationService.updateRecommendation(videoRecommendation);
+    @PutMapping("/{id}")
+    public ResponseEntity<VideoRecommendation> updateVideoRecommendation(@RequestBody VideoRecommendation videoRecommendation,
+                                                                        @PathVariable Long id) {
+        VideoRecommendation updatedVideoRecommendation = videoRecommendationService.updateRecommendation(videoRecommendation, id);
+        return new ResponseEntity<>(updatedVideoRecommendation, HttpStatus.OK);
     }
 
     @PostMapping("")
     public VideoRecommendation saveNewRecommendation(@RequestBody VideoRecommendation videoRecommendation) {
         return videoRecommendationService.saveVideoRecommendation(videoRecommendation);
+    }
+
+    @GetMapping("/by-video-id/{id}")
+    public List<VideoRecommendation> getRecommendationsByVideoId(@PathVariable Long id) {
+        return videoRecommendationService.getRecommendationByVideoId(id);
     }
 }
