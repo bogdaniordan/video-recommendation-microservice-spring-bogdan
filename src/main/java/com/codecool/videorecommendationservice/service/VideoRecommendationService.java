@@ -33,6 +33,7 @@ public class VideoRecommendationService {
         videoRecommendation.setRating(newVideoRecommendation.getRating());
         videoRecommendation.setComment(newVideoRecommendation.getComment());
         videoRecommendation.setVideoId(newVideoRecommendation.getVideoId());
+        videoRecommendation.setDate(newVideoRecommendation.getDate());
         return videoRecommendationRepository.save(videoRecommendation);
     }
 

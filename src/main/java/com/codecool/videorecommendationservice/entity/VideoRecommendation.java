@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -21,4 +22,6 @@ public class VideoRecommendation {
     private int rating;
     private String comment;
     private Long videoId;
+    private LocalDate date = LocalDate.now();
+
 }
