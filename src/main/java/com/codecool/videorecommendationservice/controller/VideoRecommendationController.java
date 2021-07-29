@@ -36,9 +36,11 @@ public class VideoRecommendationController {
         return new ResponseEntity<>(updatedVideoRecommendation, HttpStatus.OK);
     }
 
-    @PostMapping("")
-    public VideoRecommendation saveNewRecommendation(@RequestBody VideoRecommendation videoRecommendation) {
-        return videoRecommendationService.saveVideoRecommendation(videoRecommendation);
+    @PostMapping("/save-by-video/{videoId}")
+    public ResponseEntity<VideoRecommendation> saveNewRecommendation(@RequestBody VideoRecommendation videoRecommendation,
+                                                     @PathVariable Long videoId) {
+        VideoRecommendation savedVideoRecommendation =  videoRecommendationService.saveVideoRecommendation(videoRecommendation, videoId);
+        return new ResponseEntity<>(savedVideoRecommendation, HttpStatus.CREATED);
     }
 
     @GetMapping("/by-video-id/{id}")

@@ -36,7 +36,8 @@ public class VideoRecommendationService {
         return videoRecommendationRepository.save(videoRecommendation);
     }
 
-    public VideoRecommendation saveVideoRecommendation(VideoRecommendation videoRecommendation) {
+    public VideoRecommendation saveVideoRecommendation(VideoRecommendation videoRecommendation, Long videoId) {
+        videoRecommendation.setVideoId(videoId);
         return videoRecommendationRepository.save(videoRecommendation);
     }
 
