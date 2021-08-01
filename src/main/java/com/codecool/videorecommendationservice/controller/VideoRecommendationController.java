@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/video-recommendations")
 @Slf4j
+@CrossOrigin(origins = "*")
 public class VideoRecommendationController {
 
     @Autowired
